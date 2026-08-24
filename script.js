@@ -15,7 +15,7 @@ const CONFIG = {
   partnerName: 'Laiba',
 
   // REPLACE: your company / group name
-  companyName: '[Company Name]',
+  companyName: 'Saabify',
 
   // REPLACE: the timeline shown in "Remember Where We Started".
   // Add, remove, or edit entries freely — they render automatically.
