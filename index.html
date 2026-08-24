@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" class="locked">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Before You Walk Away</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Subtle floating-particle background, drawn in script.js -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- Scroll progress indicator -->
+  <div class="progress-bar" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
+
+  <!-- Background music toggle — OFF by default.
+       REPLACE: set the <source src="..."> below to your own audio file to enable music. -->
+  <button id="musicToggle" class="music-toggle" aria-label="Toggle background music" aria-pressed="false">
+    <span class="music-icon">&#9835;</span>
+  </button>
+  <audio id="bgMusic" loop preload="none">
+    <!-- REPLACE with your own music file, e.g. src="assets/music.mp3" -->
+    <source src="" type="audio/mpeg" />
+  </audio>
+
+  <!-- ===================== 1. LANDING SCREEN ===================== -->
+  <section id="landing" class="landing-screen">
+    <div class="landing-glow" aria-hidden="true"></div>
+    <div class="landing-content">
+      <p class="landing-kicker">To <span class="js-partner-name">Laiba</span></p>
+      <h1 class="landing-title">Before You Walk Away&hellip;</h1>
+      <p class="landing-subtitle">
+        Just give this a few minutes before you make a decision about something we built together.
+      </p>
+      <button id="openBtn" class="open-btn">
+        <span>Open This</span>
+      </button>
+    </div>
+  </section>
+
+  <main id="mainContent">
+
+    <!-- ===================== 2. TIMELINE ===================== -->
+    <section id="timeline" class="section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Remember</p>
+        <h2 class="section-title reveal">Remember Where We Started</h2>
+        <!-- Timeline items are rendered from CONFIG.timelineEvents in script.js.
+             REPLACE: edit the timelineEvents array at the top of script.js to change these. -->
+        <div id="timelineContainer" class="timeline"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 3. YOU WERE NEVER JUST PART OF IT ===================== -->
+    <section id="part-of-it" class="section statement-section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Not Just A Role</p>
+        <h2 class="section-title reveal">You Were Never Just Part of It</h2>
+        <p class="statement-text reveal">
+          You weren't simply someone working inside <span class="js-company-name highlight">[Company Name]</span>.
+          <br /><br />
+          You were part of the reason it became what it is.
+          Your ideas, your effort, your time, your decisions, and your presence
+          are part of this story — not a footnote in it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== 4. WE WILL DISAGREE ===================== -->
+    <section id="disagree" class="section split-section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">This Is Normal</p>
+        <h2 class="section-title reveal">We Will Disagree</h2>
+        <p class="section-subtitle reveal">And that's never been the problem. It's what happens after that matters.</p>
+
+        <div class="split">
+          <div class="split-side anger-side">
+            <h3 class="split-heading">Anger</h3>
+            <ul class="split-list">
+              <li style="--i:0">"I'm done."</li>
+              <li style="--i:1">"I want to leave."</li>
+              <li style="--i:2">"Forget everything."</li>
+              <li style="--i:3">"I don't care anymore."</li>
+            </ul>
+          </div>
+
+          <div class="split-divider" aria-hidden="true">
+            <span></span>
+          </div>
+
+          <div class="split-side calm-side">
+            <h3 class="split-heading">After Calming Down</h3>
+            <ul class="split-list">
+              <li style="--i:0">"Was that really what I wanted?"</li>
+              <li style="--i:1">"Can this conversation be fixed?"</li>
+              <li style="--i:2">"Did one moment erase everything we built?"</li>
+              <li style="--i:3">"Should I make this decision when I'm calm?"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 5. INTERACTIVE PAUSE ===================== -->
+    <section id="pause" class="section pause-section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">A Moment, Before Anything Else</p>
+        <h2 class="section-title reveal">Before You Decide&hellip;</h2>
+
+        <div class="question-stage" id="questionStage">
+          <p class="question is-active" data-index="0">Is this what you truly want?</p>
+          <p class="question" data-index="1">Or is this what you feel right now?</p>
+          <p class="question" data-index="2">Would you make the same decision tomorrow, after everything has calmed down?</p>
+          <p class="question-final" id="questionFinal">Then wait until tomorrow.</p>
+        </div>
+
+        <button id="pauseNextBtn" class="ghost-btn">Continue</button>
+      </div>
+    </section>
+
+    <!-- ===================== 6. THE FOUNDER'S SEAT ===================== -->
+    <section id="founders-seat" class="section seat-section">
+      <div class="section-inner">
+        <div class="seat-visual reveal" aria-hidden="true">
+          <div class="seat-spotlight"></div>
+          <svg viewBox="0 0 200 200" class="seat-svg">
+            <!-- simple, minimal empty-chair silhouette -->
+            <path d="M60 40 h80 v55 h-80 z" fill="none" stroke="currentColor" stroke-width="3" opacity="0.65"/>
+            <path d="M65 95 l-10 75 h20 l6 -40 h38 l6 40 h20 l-10 -75 z" fill="none" stroke="currentColor" stroke-width="3" opacity="0.65"/>
+            <line x1="55" y1="170" x2="55" y2="190" stroke="currentColor" stroke-width="3" opacity="0.65"/>
+            <line x1="145" y1="170" x2="145" y2="190" stroke="currentColor" stroke-width="3" opacity="0.65"/>
+          </svg>
+        </div>
+
+        <h2 class="section-title reveal">The Founder's Seat</h2>
+        <p class="statement-text reveal">
+          You don't have to leave the table just because the conversation became difficult.
+        </p>
+
+        <div class="seat-poem">
+          <p class="reveal">Sometimes founders don't need an exit.</p>
+          <p class="reveal">They need a pause.</p>
+          <p class="reveal">A conversation.</p>
+          <p class="reveal">A reset.</p>
+          <p class="reveal">A better way to move forward.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 7. APPRECIATION ===================== -->
+    <section id="appreciation" class="section appreciation-section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Regardless of Everything</p>
+        <h2 class="section-title reveal">Regardless of Everything&hellip;</h2>
+
+        <!-- REPLACE: edit this personal message directly, or edit CONFIG.appreciationMessage
+             in script.js if you'd rather manage it from one place. -->
+        <div class="glass-card reveal">
+          <p>
+            I want you to know that I appreciate you — not only for the work you have done,
+            but for the person you have been throughout this journey.
+          </p>
+          <p>
+            We've had good days, difficult days, disagreements, misunderstandings,
+            and moments where neither of us knew what to say.
+          </p>
+          <p>
+            But none of that changes the fact that we built something together.
+          </p>
+          <p>
+            And I don't want either of us to make a decision in anger
+            that we might regret when we're calm.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PHOTO SECTION ===================== -->
+    <section id="gallery" class="section gallery-section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">A Few Reminders</p>
+        <h2 class="section-title reveal">The Story Behind the Screens</h2>
+        <p class="section-subtitle reveal">Some of what "what we built" actually looked like.</p>
+
+        <!--
+          NOTE: Replace each <img src="..."> below with your own photos
+          (our photos together, company screenshots, project milestones, memorable moments).
+          Just swap the src and alt attributes — the layout adapts automatically.
+        -->
+        <div class="masonry" id="masonryGrid">
+          <figure class="masonry-item tall"><img src="https://picsum.photos/id/1005/600/800" alt="Memory 1" loading="lazy" /></figure>
+          <figure class="masonry-item"><img src="https://picsum.photos/id/1011/600/500" alt="Memory 2" loading="lazy" /></figure>
+          <figure class="masonry-item short"><img src="https://picsum.photos/id/1025/600/400" alt="Memory 3" loading="lazy" /></figure>
+          <figure class="masonry-item"><img src="https://picsum.photos/id/1035/600/550" alt="Memory 4" loading="lazy" /></figure>
+          <figure class="masonry-item tall"><img src="https://picsum.photos/id/1041/600/800" alt="Memory 5" loading="lazy" /></figure>
+          <figure class="masonry-item short"><img src="https://picsum.photos/id/1043/600/400" alt="Memory 6" loading="lazy" /></figure>
+          <figure class="masonry-item"><img src="https://picsum.photos/id/1050/600/500" alt="Memory 7" loading="lazy" /></figure>
+          <figure class="masonry-item tall"><img src="https://picsum.photos/id/1074/600/800" alt="Memory 8" loading="lazy" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 8. FINAL MESSAGE ===================== -->
+    <section id="final" class="section final-section">
+      <div class="section-inner">
+        <h2 class="final-title reveal">Don't decide your future on your worst day.</h2>
+        <p class="final-line reveal">Take a breath. Take a day. Then decide.</p>
+        <p class="final-note reveal">Whatever the decision is, let it be a decision — not a reaction.</p>
+
+        <button id="oneMoreBtn" class="ghost-btn">One More Thing</button>
+
+        <div class="one-more" id="oneMoreText">
+          <p>I'm not asking you to forget what happened.</p>
+          <p>I'm asking you not to let one moment decide the fate of everything we built.</p>
+        </div>
+
+        <p class="signature">&mdash; Your partner, still at the table.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#10094;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightboxImg" />
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#10095;</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
